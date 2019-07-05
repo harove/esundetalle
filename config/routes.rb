@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post '/products', to: 'products#create'
+
   resources :products, only: :index do
     resources :orders, only: :create
   end
