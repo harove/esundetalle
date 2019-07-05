@@ -10,6 +10,17 @@ Rails.application.routes.draw do
   	end
   end
 
+  resources :billings, only: [:index] do
+    collection do
+      get 'pre_pay'
+      get 'execute'
+    end
+  end
+
+
+
+
+
   devise_for :users
 
   root 'products#index'
