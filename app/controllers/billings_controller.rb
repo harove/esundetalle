@@ -2,10 +2,7 @@ class BillingsController < ApplicationController
     before_action :authenticate_user!
     def index
         @billings = current_user.billings
-    
     end
-
-    
     def pre_pay
         orders = current_user.orders.where(payed: false)
         total = orders.pluck("price * quantity").sum()
@@ -19,29 +16,37 @@ class BillingsController < ApplicationController
             item
         end
         
+        if Rails.env.development?
+            redirect_urls_ok = {
+                return_url: "http://localhost:3000/billings/execute",
+                cancel_url: "http://localhost:3000/"  
+            }
+        else
+            redirect_urls_ok = {
+                return_url: "https://esundetalle.herokuapp.com/billings/execute",
+                cancel_url: "https://esundetalle.herokuapp.com/" 
+            }
+        end
+        
         payment = PayPal::SDK::REST::Payment.new({
             intent: "sale",
             payer: {payment_method: "paypal" },
-            redirect_urls: {
-                #return_url: "http://localhost:3000/billings/execute",
-                #cancel_url: "http://localhost:3000/" },
-                return_url: "https://esundetalle.herokuapp.com//billings/execute",
-                cancel_url: "https://esundetalle.herokuapp.com/" },
-                transactions: [{
-                    item_list: {items: items },
-                    amount: {total: total.to_s, currency: "USD" },
-                    description: "Compra desde E-commerce Rails." 
-                    }]
-                })
-                
-            if payment.create
-                redirect_url = payment.links.find{|v| v.method == "REDIRECT"}.href
-                redirect_to redirect_url
-            else
-                render json: payment.error
-            end
+            redirect_urls: redirect_urls_ok,
+            transactions: [{
+                item_list: {items: items },
+                amount: {total: total.to_s, currency: "USD" },
+                description: "Compra desde E-commerce Rails." 
+            }]
+        })
+
+        if payment.create
+            redirect_url = payment.links.find{|v| v.method == "REDIRECT"}.href
+            redirect_to redirect_url
+        else
+            render json: payment.error
         end
-            
+    end
+
     def execute
         paypal_payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
         if paypal_payment.execute(payer_id: params[:PayerID])
@@ -52,7 +57,7 @@ class BillingsController < ApplicationController
                 payment_method: 'paypal',
                 amount: amount,
                 currency: 'USD'
-                )
+            )
             orders = current_user.orders.where(payed: false)
             orders.update_all(payed: true, billing_id: billing.id)
             redirect_to root_path, notice: "La compra se realizó con éxito!"
@@ -61,4 +66,4 @@ class BillingsController < ApplicationController
         end
     end
 end
-            
+        
