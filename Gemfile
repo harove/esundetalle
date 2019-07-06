@@ -15,6 +15,9 @@ gem 'faker'
 gem 'paypal-sdk-rest'
 gem 'activestorage'
 gem 'image_processing', '~> 1.2'
+gem 'omniauth-facebook'
+
+
 
 
 # Use Puma as the app server
