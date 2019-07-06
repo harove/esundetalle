@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   post '/products', to: 'products#create'
 
   resources :products, only: :index do
@@ -19,7 +21,6 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
 #  devise_for :users
 
