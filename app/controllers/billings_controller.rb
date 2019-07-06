@@ -23,8 +23,10 @@ class BillingsController < ApplicationController
             intent: "sale",
             payer: {payment_method: "paypal" },
             redirect_urls: {
-                return_url: "http://localhost:3000/billings/execute",
-                cancel_url: "http://localhost:3000/" },
+                #return_url: "http://localhost:3000/billings/execute",
+                #cancel_url: "http://localhost:3000/" },
+                return_url: "https://esundetalle.herokuapp.com//billings/execute",
+                cancel_url: "https://esundetalle.herokuapp.com/" },
                 transactions: [{
                     item_list: {items: items },
                     amount: {total: total.to_s, currency: "USD" },
