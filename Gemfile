@@ -16,8 +16,11 @@ gem 'paypal-sdk-rest'
 gem 'activestorage'
 gem 'image_processing', '~> 1.2'
 gem 'omniauth-facebook'
+#gem 'fog-aws'
 
-
+group :production do
+gem "aws-sdk-s3", require: false
+end
 
 
 # Use Puma as the app server
