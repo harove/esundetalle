@@ -25,6 +25,8 @@
               <p> <%= product.price %> </p>
               <%= link_to "Agregar al carro", product_orders_path(product), class: 'btn btn-success', method: :post  %>
               <%= link_to "Borrar producto", product_path(product), class: 'btn btn-danger', method: :delete  %>
+              <%= link_to "detalle producto", product_path(product), class: 'btn btn-primary' %>
+              
             </div>
           </div>
         </div>
