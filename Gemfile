@@ -9,6 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
+gem "haml"
 gem 'pg', '~> 0.18'
 gem 'devise', git: 'https://github.com/plataformatec/devise'
 gem 'activeadmin'
@@ -23,6 +24,7 @@ gem 'omniauth-facebook'
 group :production do
 gem "aws-sdk-s3", require: false
 end
+
 
 
 # Use Puma as the app server
