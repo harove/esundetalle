@@ -15,3 +15,4 @@ Product.destroy_all
     photo: "http://lorempixel.com/400/200/technics/#{i + 1}/"
   )
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

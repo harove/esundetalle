@@ -11,6 +11,8 @@ gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 gem 'devise', git: 'https://github.com/plataformatec/devise'
+gem 'activeadmin'
+
 gem 'faker'
 gem 'paypal-sdk-rest'
 gem 'activestorage'
