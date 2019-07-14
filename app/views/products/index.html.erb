@@ -11,12 +11,13 @@
       <% row.each do |product| %>
         <div class="col">
           <div class="card">
-            <% if product.image.attached? %>
+            <% if product.images.attached? %>
               <p>
               <strong>Image:</strong>
               <br>
-              <%= image_tag product.image.variant(resize: '200x200'), class: 'card-img-top' %>
-
+              <%# (0..(product.images.count-1)).each do |image|%>
+                <%= image_tag (product.images[0].variant(resize: "300x300")), class: 'card-img-top' %>
+              <%# end %>
               </p>
             <% end %>
     

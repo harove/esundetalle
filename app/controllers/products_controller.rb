@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
     
     @product = Product.new(product_params)
     
-    @product.image.attach(params[:product][:image])
+    #@product.images.attach(params[:product][:images])
 
     respond_to do |format|
       if @product.save
@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       # params.require(:product).permit(:name, :price, :image )
-      params.require(:product).permit(:name, :price, :image)
+      params.require(:product).permit(:name, :price, images: [])
     end
 
 
