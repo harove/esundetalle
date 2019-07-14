@@ -19,6 +19,7 @@ gem 'paypal-sdk-rest'
 gem 'activestorage'
 gem 'image_processing', '~> 1.2'
 gem 'omniauth-facebook'
+gem "omniauth-rails_csrf_protection"
 #gem 'fog-aws'
 
 group :production do
