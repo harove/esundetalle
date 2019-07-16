@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: carro2_production3
+  database: carro2_production4
   username: carro2
   password: <%= ENV['CARRO2_DATABASE_PASSWORD'] %>
