@@ -2,15 +2,19 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    p = Product.find(params[:product_id])
-    o = Order.find_or_create_by(user: current_user, product: p, payed: false, price: p.price)
-    o.quantity += 1
+    @product = Product.find(params[:product_id])
+    @order = Order.find_or_create_by(user: current_user, product: @product, payed: false, price: @product.price)
+    @order.quantity += 1
 
-    if o.save
-      redirect_to products_path, notice: "El producto ha sido agregado al carro."
+    if @order.save
+      respond_to :js
+    #  redirect_to products_path, notice: "El producto ha sido agregado al carro."
     else
-      redirect_to products_path, alert: "El producto NO ha sido agregado al carro"
+    #  redirect_to products_path, alert: "El producto NO ha sido agregado al carro"
     end
+
+    @orders = Order.all
+
   end
 
   def clean
@@ -18,6 +22,12 @@ class OrdersController < ApplicationController
     @orders.destroy_all
     redirect_to orders_path, notice: 'El carro se ha vaciado.'
   end
+
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+  end
+
 
   def index
     @orders = current_user.orders.where(payed: false)

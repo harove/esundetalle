@@ -10,8 +10,9 @@
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
       %li.nav-item.active
-        %a.nav-link{:href => orders_path } 
-          Mi carro
+        %a.nav-link{:href => orders_path }
+          Mi Carro 
+          %i.fas.fa-shopping-cart
           %span.sr-only (current)
     %ul.navbar-nav.ml-auto
       -if !user_signed_in?
@@ -19,8 +20,12 @@
           =link_to 'Iniciar sesión', new_user_session_path, class: 'nav-link'
         %li.nav-item
           =link_to 'Registrarse',  new_user_registration_path, class: 'nav-link'
+        %li.nav-item
+          =link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post, class: 'nav-link'
       -else
         %li.nav-item
           %a.nav-link= current_user.email
         %li.nav-item
           = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'nav-link'
+
+

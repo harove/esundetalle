@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :orders, only: :create
   end
 
-  resources :orders, only: :index do
+  resources :orders, only: [:index,:destroy] do
   	collection do
   		get 'clean'
   	end
