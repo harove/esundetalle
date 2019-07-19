@@ -8,7 +8,7 @@ class Ability
     #   else
     #      can :read, :create, :update, :all
     #   end
-    if user.email == 'super@esundetalle.cl'
+    if user.email == 'admin@example.cl'
       can :manage, :all
     else
        can :read, Product
