@@ -11,25 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, required: true %>
+    <%= form.text_field :name, required: true, class: 'form-control', placeholder: "name" %>
   </div>
 
-<div class="field">
+<div class="form-group">
 <%= form.label :images %>
-<%= form.file_field :images, multiple: true %>
+<%= form.file_field :images, multiple: true, class: 'form-control' %>
 </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :price %>
-    <%= form.number_field :price, required: true %>
+    <%= form.number_field :price, required: true, class: 'form-control', placeholder: "price" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'submit', :class => 'btn btn-primary' %>
   </div>
 <% end %>
-
-
-

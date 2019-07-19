@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
-authorize_resource
-load_resource
+  authorize_resource
 
   def index
     @products = Product.all
@@ -25,7 +24,7 @@ load_resource
     
     @product = Product.new(product_params)
     
-    #@product.images.attach(params[:product][:images])
+    @product.images.attach(params[:product][:images])
 
     respond_to do |format|
       if @product.save

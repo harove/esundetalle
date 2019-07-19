@@ -6,7 +6,10 @@
 
 <div class="superform" id='superform'>
 
+
+<% if can?(:create, @product) %>
   <%= render 'form', product: @product %>
+<% end %>
 
 </div>
 
