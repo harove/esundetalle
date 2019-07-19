@@ -21,6 +21,9 @@ gem 'image_processing', '~> 1.2'
 gem 'omniauth-facebook'
 gem "omniauth-rails_csrf_protection"
 #gem 'fog-aws'
+gem 'cancancan'
+
+
 
 group :production do
 gem "aws-sdk-s3", require: false

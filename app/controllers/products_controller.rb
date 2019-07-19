@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+authorize_resource
+load_resource
+
   def index
     @products = Product.all
     @product = Product.new

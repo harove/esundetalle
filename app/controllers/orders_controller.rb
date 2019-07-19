@@ -1,20 +1,22 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  authorize_resource
 
   def create
     @product = Product.find(params[:product_id])
     @order = Order.find_or_create_by(user: current_user, product: @product, payed: false, price: @product.price)
     @order.quantity += 1
 
-    if @order.save
-      respond_to :js
-    #  redirect_to products_path, notice: "El producto ha sido agregado al carro."
-    else
-    #  redirect_to products_path, alert: "El producto NO ha sido agregado al carro"
+    respond_to do |format|
+      if @order.save
+          format.js
+            #  redirect_to products_path, notice: "El producto ha sido agregado al carro."
+      else
+      #  redirect_to products_path, alert: "El producto NO ha sido agregado al carro"
+      end
     end
 
     @orders = Order.all
-
   end
 
   def clean
