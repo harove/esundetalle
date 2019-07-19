@@ -15,6 +15,14 @@
  */
 
 
+ .jumbotron{
+    background: url("/public/jumbo.jpeg") no-repeat center center; 
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
 
 
  h1{
