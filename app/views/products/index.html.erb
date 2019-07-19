@@ -1,14 +1,18 @@
 
-  <%= render 'shared/jumbotron'%>
+<%= render 'shared/jumbotron'%>
 
 
 
 
-<div class="chart" id='chart'>
+<div class="superform" id='superform'>
 
+  <%= render 'form', product: @product %>
 
 </div>
-<%= render 'form', product: @product %>
+
+
+
+
   <div class="row">
     <% @products.each_slice(4) do |row| %>
       <% row.each do |product| %>
