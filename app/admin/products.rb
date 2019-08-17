@@ -1,11 +1,13 @@
 ActiveAdmin.register Product do
-    permit_params :name, images: []
+    permit_params :name, :price, :description, images: []
     form partial: 'form'
     nro_images = 0
   
     show do
       attributes_table do
         row :name
+        row :price
+        row :description
         row :images[0] do |ad|
           nro_images = ad.images.size
           image_tag url_for(ad.images[0].variant(resize: "200x200"))
@@ -19,4 +21,5 @@ ActiveAdmin.register Product do
 
       end
     end
-end
+
+  end

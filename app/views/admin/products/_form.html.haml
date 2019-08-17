@@ -1,5 +1,7 @@
 = semantic_form_for [:admin, @product], builder: ActiveAdmin::FormBuilder do |f|
   = f.inputs do
     = f.input :name
+    = f.input :price
+    = f.input :description  
     = f.input :images, as: :file, :input_html => { :multiple => true }
     = f.actions
