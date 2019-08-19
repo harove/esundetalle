@@ -17,7 +17,23 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def edit
+    @product = Product.find(params[:id])
+  end
 
+  def update
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to @product, notice: 'Company was successfully updated.' }
+        format.json { render :show, status: :ok, location: @product }
+        format.js {}
+      else
+        format.html { render :edit }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
 
   def create

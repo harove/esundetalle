@@ -49,12 +49,17 @@
 
         <div class="desc">
             <p> 
-            Descripción de producto 1
+            Descripción de producto
             </p>
-            <p>
-                <%=@product.description %>
-                
+
+            <p id="<%=@product.id%>_showDescription" >
+                <%= @product.description %>
             </p>
+
+            <% if can?(:edit, :product)%>
+                <%= link_to "edit description", edit_product_path(@product), class: 'btn btn-danger', method: :get, data: {remote: true}  %>
+            <% end %>
+
         </div>
 
 
@@ -64,12 +69,10 @@
    
 
  <div class="bd-example col-xl-4">
-              <h5> <%= @product.name %> </h>
+              <h5> <%= @product.name %> </h5>
               <p> <%= @product.price %> </p>
               <%= link_to "Agregar al carro", product_orders_path(@product), class: 'btn btn-success', method: :post, data: {remote: true}  %>
 </div>
-
-
 
 
 </div>

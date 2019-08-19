@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   #post '/products', to: 'products#create'
 
-  resources :products, only: [:index,:create,:destroy,:show] do
+  #resources :products, only: [:index,:create,:destroy,:show, :update] do
+  resources :products do  
     resources :orders, only: :create
   end
 
