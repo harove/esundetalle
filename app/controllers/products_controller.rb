@@ -37,10 +37,26 @@ class ProductsController < ApplicationController
 
 
   def create
-    
+
     @product = Product.new(product_params)
     
-    @product.images.attach(params[:product][:images])
+    if params[:product][:images].present?
+      params[:product][:images].each do |image|
+        @product.images.attach(image)
+      end
+    end
+
+
+
+
+    # @product.images.attach(params[:images])
+    #@product.images = params[:product][:images]
+
+
+
+
+
+
 
     respond_to do |format|
       if @product.save
@@ -57,7 +73,10 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       # params.require(:product).permit(:name, :price, :image )
-      params.require(:product).permit(:name, :price, :description, images: [])
+      # params.require(:product).permit(:name, :price, :description, images: [])
+      params.require(:product).permit(:name, :price, :description)
+    
+    
     end
 
 

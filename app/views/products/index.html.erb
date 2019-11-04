@@ -18,7 +18,8 @@
               <strong>Image:</strong>
               <br>
               <%# (0..(product.images.count-1)).each do |image|%>
-                <%= image_tag (product.images[0].variant(resize: "300x300")), class: 'card-img-top' %>
+                <%# image_tag (product.images[0].variant(resize_to_fit: [300, 300])), class: 'card-img-top' %>
+                  <%= image_tag (product.images[0]), class: 'card-img-top' %>
               <%# end %>
               </p>
             <% end %>
