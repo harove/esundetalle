@@ -19,7 +19,7 @@ gem 'faker'
 gem 'paypal-sdk-rest'
 
 gem 'activestorage'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 gem 'omniauth-facebook'
 gem "omniauth-rails_csrf_protection"
 #gem 'fog-aws'
